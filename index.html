@@ -1,79 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible content=" IE=edge">
-   <title>Weather Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather Dashboard APP</title>
 
-   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-   <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
-   <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
 </head>
-
 <body>
-   <div class="continaer-fluid">
-      <div class="row navbar navbar-dark bg-dark">
-         <div class="col-12 text-center">
-            <h1 class="navbar-brand pb-0 px-0">Forecast</h1>
-         </div>
-      </div>
-      <div class="row content-row">
-         <div class="col-12 col-md-3 bg-light pt-3">
-            <h5>Enter a city name:</h5>
-            <form>
-               <div class="form-group input-group">
-                  <input type="text" class="form-control" id="searchCity" placeholder="City Name">
-                  <div class="input-group-append">
-                     <button class="btn btn-info" type="button" id="searchCityButton">
-                        <i class="fa fa-search"></i>
-                     </button>
-                  </div>
-               </div>
-            </form>
-            <!-- Search History -->
-            <div class="card">
-               <ul class="list-group list-group-flush" id="searchCity">
-               </ul>
-               <button id="searchBtn" class="btn btn-sm btn-secondary hide">Ckear History</button>
+    <div class="container-fluid">
+        <div class="row navbar navbar-dark bg-dark">
+            <div class="col-12 text-center">
+                <h1 class="navbar-brand pb-0 px-0">Weather Forcast</h1>
             </div>
-         </div>
-         <div id="weatherContent" class="col-12 col-md-9 hide">
-            <div class="row">
-               <div class="col-12">
-                  <div class="city-info border rounded my-3 px-3 py-3">
-                     <h2 id="currentCity">City Info <small class=text-muted" id="cityInput"></small></h2>
-
-                     <p class="mb-0">Temperature: <span id="currentTemp"></span></p>
-                     <p class="mb-0">Humidity: <span id="currentHumidity"></span></p>
-                     <p class="mb-0">Wind Speed: <span id="currentWind"></span></p>
-                     <p class="mb-0">UV Index: <span id="uvIndex"></span></p>
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col-12">
-                     <h3>5-Day Forecast</h3>
-                  </div>
-               </div>
-               <div id="five-day-forecast" class="row">
-                  <div class="col-2">
-                     <div class="card">
-                        <div class="card-body">
-                           <h5 class="card-title">Date</h5>
-                           <i class="fa fa-sun"></i>
-                           <p class="card-text">Temp:</p>
-                           <p class="card-text">Humidity:</p>
+        </div>
+        <div class="row content-row">
+            <div class="col-12 col-md-3 bg-light pt-3">
+                <h5>Search for a city:</h5>
+                <form>
+                    <div class="form-group input-group">
+                        <input type="text" class="form-control" id="searchCity" placeholder="Enter city here">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="button" id="searchCityButton">
+                                <i class="fa fa-search"></i>
+                            </button>
                         </div>
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </form>
+                <!-- Seach History -->
+                <div class="card">
+                    <ul class="list-group list-group-flush" id="searchCity">
+                        
+                        
+                    </ul>
+                    <button id="searchBtn" class="btn btn-sm btn-secondary hide">Clear History</button>
+                </div>
             </div>
-         </div>
-      </div>
-      <script src="./script.js"></script>
+            <div id="weatherContent" class="col-12 col-md-9 hide">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="city-info border rounded my-3 px-3 py-3">
+                            <h2 id="currentCity">City Information <small class="text-muted" id="cityInput"></small></h2>
+
+                            <p class="mb-0">Temperature: <span id="currentTemp"></span></p>
+                            <p class="mb-0">Humidity: <span id="currentHumidity"></span></p>
+                            <p class="mb-0">Wind Speed: <span id="currentWindSpeed"></span></p>
+                            <p>UV index: <span id="uvIndex"></span></p> 
+                            <!-- <img src="data:image/jpeg;base64,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"> -->
+                    <!-- <img src="https://icon2.cleanpng.com/20180418/rze/kisspng-rain-drawing-cartoon-clip-art-5ad7a7803c7b69.2257563915240825602477.jpg" -->
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h3>5-Day Forecast</h3>
+                        
+                    </div>
+                </div>
+                <div id="five-day-forecast" class="row">
+                    <div class="col-2">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">Date</h5>
+                            <i class="fa fa-sun"></i>
+                            <p class="card-text">Temp: </p>
+                            <p class="card-text">Humidity: </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

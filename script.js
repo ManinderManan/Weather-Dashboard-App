@@ -13,20 +13,26 @@ var UVindex = $("#uvIndex");
 var weatherContent = $("#weatherContent");
 
 // OpenWeather API
-const apiKey = "aaabea800b275cec17205ddd5201a6b5";
+//var apiKey = "a17e1499228be1f9c294ac18b234c7d7";
+const apiKey = "bc7696a82d6df78862740451e4d87874";
+
+// Easy access to data
 var cityList = [];
+
+// Find current date and display in title
 var currentDate = moment().format('L');
 $("#current-date").text("(" + currentDate + ")");
 
-
+// Check if search history exists when page loads
 initalizeHistory();
 showClear();
 
-
+// Hitting enter while input is focused will trigger
+// value added to search history
 $(document).on("submit", function(){
     event.preventDefault();
 
-
+    // Grab value entered into search bar 
     var searchValue = cityHeader.val().trim();
 
     currentConditionsRequest(searchValue)
@@ -34,10 +40,12 @@ $(document).on("submit", function(){
     cityHeader.val(""); 
 });
 
-
+// Clicking the search button will trigger
+// value added to search history
 searchBtn.on("click", function(event){
     event.preventDefault();
 
+    // Grab value entered into search bar 
     var searchValue = cityHeader.val().trim();
 
     currentConditionsRequest(searchValue)
@@ -45,19 +53,20 @@ searchBtn.on("click", function(event){
     cityHeader.val(""); 
 });
 
-
+// Clear the sidebar of past cities searched
 clearBtn.on("click", function(){
-
+    // Empty out the  city list array
     cityList = [];
-
+    // Update city list history in local storage
     listArray();
     
     $(this).addClass("hide");
 });
 
-
+// Clicking on a button in the search history sidebar
+// will populate the dashboard with info on that city
 searchHistoryList.on("click","li.city-btn", function(event) {
-
+    // console.log($(this).data("value"));
     var value = $(this).data("value");
     currentConditionsRequest(value);
     searchHistory(value); 
@@ -232,8 +241,7 @@ function initalizeHistory() {
         var lastIndex = cityList.length - 1;
         // console.log(cityList);
         listArray();
-        // Display the last city viewed
-        // if page is refreshed
+       
         if (cityList.length !== 0) {
             currentConditionsRequest(cityList[lastIndex]);
             weatherContent.removeClass("hide");
@@ -248,183 +256,3 @@ function showClear() {
         clearBtn.removeClass("hide");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
